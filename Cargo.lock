@@ -11,9 +11,9 @@ dependencies = [
 
 [[package]]
 name = "amq-protocol"
-version = "6.0.0-rc12"
+version = "6.0.0-rc11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a582e9acd2b9c950e0199f362b50adc2dd50df19b80b6ff21e6f665f9ffec1a"
+checksum = "87ef73bc41e9b11abddb726674222ead7cc7ca213792c4e6975b32d336a91fcd"
 dependencies = [
  "amq-protocol-tcp",
  "amq-protocol-types",
@@ -24,9 +24,9 @@ dependencies = [
 
 [[package]]
 name = "amq-protocol-tcp"
-version = "6.0.0-rc12"
+version = "6.0.0-rc11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08a78f63c0f5687fad9e568308a0e47dbf67284169989720041a1776da2a2a54"
+checksum = "cd1d31f96067568d994879cc88dd76bee92dd87129dc6f11e22a0c0b29c5c32a"
 dependencies = [
  "amq-protocol-uri",
  "log 0.4.8",
@@ -35,9 +35,9 @@ dependencies = [
 
 [[package]]
 name = "amq-protocol-types"
-version = "6.0.0-rc12"
+version = "6.0.0-rc11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79ba245d2b7aff08d8d282e599b464d39374562558978441ba79dbf2c4144c1f"
+checksum = "77086efe0607b5ac2da723d3af9a087a2d7ba305d0010ae200aa4f548c330e34"
 dependencies = [
  "cookie-factory",
  "nom 6.0.0-alpha1",
@@ -47,9 +47,9 @@ dependencies = [
 
 [[package]]
 name = "amq-protocol-uri"
-version = "6.0.0-rc12"
+version = "6.0.0-rc11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d04a3088d68efdc84895ccf27af671d553807a713c1f33f0e2ee35c19ddc593"
+checksum = "cc4f4f1813c1dbc0c4f8f7bee2bc0a2cf32ff63d5de12bca46aff68a33a13668"
 dependencies = [
  "percent-encoding",
  "url",
@@ -683,9 +683,9 @@ dependencies = [
 
 [[package]]
 name = "lapin"
-version = "1.2.1"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5863bac1b1506b36aac7d038fc9e35917d85cb978f9314b8eaacf3277a2a0f41"
+checksum = "bbdaec5d07b9f1bafb080e94245bef673a9c65c3686dfc5a067af032a25dfbbe"
 dependencies = [
  "amq-protocol",
  "async-task",
@@ -693,7 +693,7 @@ dependencies = [
  "futures-core",
  "log 0.4.8",
  "mio 0.7.0",
- "parking_lot",
+ "parking_lot 0.10.2",
  "pinky-swear",
 ]
 
@@ -737,6 +737,15 @@ name = "linked-hash-map"
 version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8dd5a6d5999d9907cda8ed67bbd137d3af8085216c2ac62de5be860bd41f304a"
+
+[[package]]
+name = "lock_api"
+version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c4da24a77a3d8a6d4862d95f72e6fdb9c09a643ecdb402d754004a557f2bec75"
+dependencies = [
+ "scopeguard",
+]
 
 [[package]]
 name = "lock_api"
@@ -1045,13 +1054,37 @@ dependencies = [
 
 [[package]]
 name = "parking_lot"
+version = "0.10.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3a704eb390aafdc107b0e392f56a82b668e3a71366993b5340f5833fd62505e"
+dependencies = [
+ "lock_api 0.3.4",
+ "parking_lot_core 0.7.2",
+]
+
+[[package]]
+name = "parking_lot"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4893845fa2ca272e647da5d0e46660a314ead9c2fdd9a883aabc32e481a8733"
 dependencies = [
  "instant",
- "lock_api",
- "parking_lot_core",
+ "lock_api 0.4.0",
+ "parking_lot_core 0.8.0",
+]
+
+[[package]]
+name = "parking_lot_core"
+version = "0.7.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d58c7c768d4ba344e3e8d72518ac13e259d7c7ade24167003b8488e10b6740a3"
+dependencies = [
+ "cfg-if",
+ "cloudabi 0.0.3",
+ "libc",
+ "redox_syscall",
+ "smallvec",
+ "winapi 0.3.9",
 ]
 
 [[package]]
@@ -1165,7 +1198,7 @@ checksum = "69d77f4b87d15fa8a91f6397ed103bed133e26701ccea39a3736c18c0e822129"
 dependencies = [
  "doc-comment",
  "log 0.4.8",
- "parking_lot",
+ "parking_lot 0.11.0",
 ]
 
 [[package]]
@@ -1693,9 +1726,9 @@ dependencies = [
 
 [[package]]
 name = "tcp-stream"
-version = "0.20.2"
+version = "0.19.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "61b571da6db602747ea44a7f089d52cf5bdc280a1cd8142ea263ae52e62ea0f0"
+checksum = "5d7c73e237527c79ff01f993848361c73996dcc1a9aef5c302536218861b8535"
 dependencies = [
  "cfg-if",
  "mio 0.7.0",
