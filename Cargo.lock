@@ -1636,7 +1636,6 @@ version = "0.1.0"
 dependencies = [
  "config",
  "env_logger",
- "getset",
  "lapin",
  "log 0.4.8",
  "serde 1.0.114",

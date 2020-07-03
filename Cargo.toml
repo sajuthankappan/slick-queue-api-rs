@@ -9,7 +9,6 @@ edition = "2018"
 [dependencies]
 config = "0.10.1"
 env_logger = "0.7.1"
-getset = "0.1.1"
 lapin = "1.2.1"
 log = "0.4.8"
 serde = { version = "1.0.114", features = ["derive"] }
