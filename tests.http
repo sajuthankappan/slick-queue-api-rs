@@ -1,0 +1,17 @@
+GET {{slickApiBaseUrl}}/ping
+
+###
+POST {{slickApiBaseUrl}}/queue-page
+Content-Type: application/json
+
+{
+  "url": "https://news.saju.dev"
+}
+
+###
+POST {{slickApiBaseUrl}}/queue-site
+Content-Type: application/json
+
+{
+  "siteId": "5ee92bd96b118d28f9ba4cd6"
+}
