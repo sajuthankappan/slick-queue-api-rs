@@ -15,3 +15,15 @@ Content-Type: application/json
 {
   "siteId": "5ee92bd96b118d28f9ba4cd6"
 }
+
+###
+POST {{slickApiBaseUrl}}/queue-site
+Content-Type: application/json
+
+{
+  "siteId": "5ee92bd96b118d28f9ba4cd6",
+  "cookie": {
+    "name": "sss",
+    "value": "kkk"
+  }
+}
