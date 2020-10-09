@@ -1,6 +1,8 @@
 use config;
 use env_logger;
-use lapin::{Channel, Connection, ConnectionProperties, BasicProperties, options::BasicPublishOptions};
+use lapin::{
+    options::BasicPublishOptions, BasicProperties, Channel, Connection, ConnectionProperties,
+};
 use log::info;
 use serde::{Deserialize, Serialize};
 use slick_models::{PageScoreParameters, ScoreParameters, SiteScoreParameters};
@@ -24,7 +26,7 @@ struct QueueResponse {
 #[tokio::main]
 async fn main() {
     env_logger::init();
-    info!("Starting Slick API..");
+    info!("Starting Slick Queue API..");
 
     let mut raw_config = config::Config::default();
     raw_config
@@ -47,31 +49,29 @@ async fn main() {
         .and(warp::path("queue-page"))
         .and(with_amqp(channel.clone()))
         .and(warp::body::json())
-        .and_then(queue_page_post_handler);
+        .and_then(handle_queue_page);
 
     let queue_site = warp::post()
         .and(warp::path("queue-site"))
         .and(with_amqp(channel.clone()))
         .and(warp::body::json())
-        .and_then(queue_site_post_handler);
+        .and_then(handle_queue_site);
 
     let port = env::var("PORT").unwrap_or("8080".into());
     let server_port = format!("0.0.0.0:{}", port);
     let addr = server_port.parse::<SocketAddr>().unwrap();
 
-    let routes = ping
-        .or(queue_page)
-        .or(queue_site);
+    let routes = ping.or(queue_page).or(queue_site);
 
     println!("Listening on {}", &addr);
 
     warp::serve(routes).run(addr).await;
 }
 
-async fn queue_page_post_handler(
+async fn handle_queue_page(
     channel: Channel,
     page_score_parameters: PageScoreParameters,
-) -> Result<impl warp::Reply, Infallible> {
+) -> Result<impl warp::Reply, warp::Rejection> {
     let parameters = ScoreParameters {
         page: Some(page_score_parameters),
         site: None,
@@ -87,10 +87,10 @@ async fn queue_page_post_handler(
     Ok(warp::reply::json(&resp))
 }
 
-async fn queue_site_post_handler(
+async fn handle_queue_site(
     channel: Channel,
     site_score_parameters: SiteScoreParameters,
-) -> Result<impl warp::Reply, Infallible> {
+) -> Result<impl warp::Reply, warp::Rejection> {
     let parameters = ScoreParameters {
         page: None,
         site: Some(site_score_parameters),

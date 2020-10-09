@@ -1,6 +1,6 @@
 # Use the official Rust image.
 # https://hub.docker.com/_/rust
-FROM rust:1.44.0 as builder
+FROM rust:1.47.0 as builder
 WORKDIR /usr/src
 
 # Create a dummy project and build the app's dependencies.
