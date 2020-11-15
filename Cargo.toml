@@ -8,11 +8,11 @@ edition = "2018"
 
 [dependencies]
 config = "0.10.1"
-env_logger = "0.7.1"
-lapin = "1.4.1"
+env_logger = "0.8.1"
+lapin = "1.5.0"
 log = "0.4.11"
-serde = { version = "1.0.116", features = ["derive"] }
-serde_json = "1.0.58"
+serde = { version = "1.0.117", features = ["derive"] }
+serde_json = "1.0.59"
 tokio = { version = "0.2.22", features = ["macros"] }
 warp = "0.2.5"
-slick-models = { version = "0.11.6", git = "https://github.com/sajuthankappan/slick-models-rs.git" }
+slick-models = { version = "0.12.2", git = "https://github.com/sajuthankappan/slick-models-rs.git" }
